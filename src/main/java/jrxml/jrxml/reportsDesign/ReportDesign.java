@@ -92,7 +92,7 @@ public class ReportDesign {
 
         List<List<String>> elements = FileReader.readLineByLine(fileList.get(2).getPath());
         JRDesignField f = new JRDesignField();
-
+/// OBRATITI PAZNJU JER JE SJEBANOO NAKON PODELE FAJLOVA
         f.setValueClassName(elements.get(0).get(1));
         f.setName(elements.get(0).get(0));
         subdataset.addField(f);
