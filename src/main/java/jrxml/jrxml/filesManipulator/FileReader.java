@@ -1,4 +1,4 @@
-package jrxml.jrxml.fileManipulator;
+package jrxml.jrxml.filesManipulator;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +25,7 @@ public class FileReader {
                 if (s.contains("private") && !s.contains("static")) {
                     String[] line = s.trim().split(";")[0].split(" ");
                     int last = line.length - 1;
-                    List<String> field = new ArrayList(Arrays.asList(line[last], line[last-1]));
+                    List<String> field = new ArrayList(Arrays.asList(line[last], "java.lang.String"));
                     fields.add(field);
                 }
             });
@@ -33,22 +33,22 @@ public class FileReader {
             e.printStackTrace();
         }
 
-//ToDo Avoid nested loops
-        for (List field : fields) {
-            for (String i : imports) {
-                if (i.contains(field.get(1).toString())) {
-                    field.set(1, i.split(";")[0]);
-                    break;
-                }
-            }
-
-            String typeString = field.get(1).toString();
-            if(!typeString.contains(".") && !typeString.toLowerCase().contains("entity")){
-                String fieldValue = "java.lang."+field.get(1).toString();
-                field.set(1, fieldValue);
-            }
-
-        }
+        ///ToDo Avoid nested loops
+//        for (List field : fields) {
+//            for (String i : imports) {
+//                if (i.contains(field.get(1).toString())) {
+//                    field.set(1, i.split(";")[0]);
+//                    break;
+//                }
+//            }
+//
+//            String typeString = field.get(1).toString();
+//            if (!typeString.contains(".") && !typeString.toLowerCase().contains("entity")) {
+//                String fieldValue = "java.lang." + field.get(1).toString();
+//                field.set(1, fieldValue);
+//            }
+//
+//        }
 
         return fields;
     }

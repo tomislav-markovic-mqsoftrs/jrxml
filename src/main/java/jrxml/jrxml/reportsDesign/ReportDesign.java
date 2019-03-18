@@ -1,18 +1,23 @@
 package jrxml.jrxml.reportsDesign;
 
-import jrxml.jrxml.fileManipulator.FileReader;
-import jrxml.jrxml.fileManipulator.FilesGetter;
+import jrxml.jrxml.filesManipulator.FileReader;
+import jrxml.jrxml.filesManipulator.FilesGetter;
+import jrxml.jrxml.templateParts.ColumnsCreator;
+import jrxml.jrxml.templateParts.TableCreator;
 import net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory;
-import net.sf.jasperreports.components.table.DesignCell;
+import net.sf.jasperreports.components.table.Column;
 import net.sf.jasperreports.components.table.StandardColumn;
 import net.sf.jasperreports.components.table.StandardTable;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.component.ComponentKey;
 import net.sf.jasperreports.engine.design.*;
 import net.sf.jasperreports.engine.type.WhenNoDataTypeEnum;
+import net.sf.jasperreports.engine.xml.JRXmlWriter;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -21,46 +26,18 @@ public class ReportDesign {
     private static final String PARAMETER_DATA = "tableData";
     public JasperDesign jasperDesign;
 
-    private StandardColumn createColumn(int width, int height, String headerText, String detailExpression) {
-        StandardColumn column = new StandardColumn();
-        column.setWidth(width);
 
-        //column header
-        DesignCell header = new DesignCell();
-        header.setDefaultStyleProvider(jasperDesign);
-        header.getLineBox().getPen().setLineWidth(1f);
-        header.setHeight(height);
+public void createReports(List<File> files) throws JRException {
+ for(File file: files){
+     System.out.println(file.getName());
+     JasperDesign template = createReport(file);
+     String fileName = file.getName().split("\\.")[0] + "Template.jrxml";
+     JRXmlWriter.writeReport(template, "/home/toma/Toma/"+fileName, "UTF-8");
+ }
+}
+    //the report
 
-        JRDesignStaticText headerElement = new JRDesignStaticText(jasperDesign);
-        headerElement.setX(0);
-        headerElement.setY(0);
-        headerElement.setWidth(width);
-        headerElement.setHeight(height);
-        headerElement.setText(headerText);
-
-        header.addElement(headerElement);
-        column.setColumnHeader(header);
-
-        //column detail
-        DesignCell detail = new DesignCell();
-        detail.setDefaultStyleProvider(jasperDesign);
-        detail.getLineBox().getPen().setLineWidth(1f);
-        detail.setHeight(height);
-
-        JRDesignTextField detailElement = new JRDesignTextField(jasperDesign);
-        detailElement.setX(0);
-        detailElement.setY(0);
-        detailElement.setWidth(width);
-        detailElement.setHeight(height);
-        detailElement.setExpression(new JRDesignExpression(detailExpression));
-
-        detail.addElement(detailElement);
-        column.setDetailCell(detail);
-
-        return column;
-    }
-
-    public JasperDesign createReport() throws JRException {
+    public JasperDesign createReport(File file) throws JRException {
         //the report
         jasperDesign = new JasperDesign();
         jasperDesign.setName("TableReport");
@@ -86,24 +63,20 @@ public class ReportDesign {
 
 
         ////VAZNOOOOO!!!
-        FilesGetter filesGetter = new FilesGetter();
+        FilesGetter filesGetter = new FilesGetter("/home/toma/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
         List<File> fileList = filesGetter.getFiles();
 
 
-        List<List<String>> elements = FileReader.readLineByLine(fileList.get(2).getPath());
-        JRDesignField f = new JRDesignField();
-/// OBRATITI PAZNJU JER JE SJEBANOO NAKON PODELE FAJLOVA
-        f.setValueClassName(elements.get(0).get(1));
-        f.setName(elements.get(0).get(0));
-        subdataset.addField(f);
+        List<List<String>> elements = FileReader.readLineByLine(file.getPath());
 
-//		for(  List element : elements){
-//			JRDesignField f = new JRDesignField();
-//			f.setValueClassName(element.get(1).toString());
-//			f.setName(element.get(0).toString());
-//			subdataset.addField(f);
-//		}
 
+        for(List<String> e : elements){
+            JRDesignField f = new JRDesignField();
+            f.setValueClassName(e.get(1));
+            f.setName(e.get(0));
+            subdataset.addField(f);
+
+        }
 
         jasperDesign.addDataset(subdataset);
 
@@ -118,30 +91,37 @@ public class ReportDesign {
                 ComponentsExtensionsRegistryFactory.TABLE_COMPONENT_NAME);
         tableElement.setComponentKey(componentKey);
 
-        StandardTable table = new StandardTable();
 
-        //the table data source
-        JRDesignDatasetRun datasetRun = new JRDesignDatasetRun();
-        datasetRun.setDatasetName(datasetName);
-        datasetRun.setDataSourceExpression(new JRDesignExpression(
-                "new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($P{" + PARAMETER_DATA + "})"));
-        table.setDatasetRun(datasetRun);
+
+
+        ColumnsCreator column = new ColumnsCreator();
+
+
+
 
         //first column
-        StandardColumn recNoColumn = createColumn(100, 20, "Record", "$V{REPORT_COUNT}");
-        table.addColumn(recNoColumn);
-
+        StandardColumn recNoColumn = column.createStandardColumn(100, 20, "Record", "$V{REPORT_COUNT}");
         //second column
-        StandardColumn fieldColumn = createColumn(100, 20, "Field", "$F{" + FIELD_NAME + "}");
-        table.addColumn(fieldColumn);
-
+        StandardColumn fieldColumn = column.createStandardColumn(100, 20, "Field", "$F{" + FIELD_NAME + "}");
         //third column
-        //second column
-        StandardColumn idColumn = createColumn(100, 20,elements.get(0).get(0) , "$F{" + elements.get(0).get(0) + "}");
-        table.addColumn(idColumn);
 
 
-        tableElement.setComponent(table);
+        List<Column> columns = new ArrayList<Column>();
+        for(List<String> e : elements){
+            StandardColumn col = column.createStandardColumn(100, 20,e.get(0) , "$F{" + e.get(0) + "}");
+            columns.add(col);
+        }
+
+
+
+
+
+
+
+        TableCreator tableCreator = new TableCreator();
+        StandardTable standardTable = tableCreator.createStandardTable(columns);
+
+        tableElement.setComponent(standardTable);
 
         JRDesignBand title = new JRDesignBand();
         title.setHeight(50);

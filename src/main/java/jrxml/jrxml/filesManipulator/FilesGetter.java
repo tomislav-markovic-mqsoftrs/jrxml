@@ -1,4 +1,4 @@
-package jrxml.jrxml.fileManipulator;
+package jrxml.jrxml.filesManipulator;
 
 import org.springframework.stereotype.Component;
 
@@ -6,19 +6,22 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+
 public class FilesGetter {
     private String filesPath;
-
-
-    public FilesGetter(){
-        this("/home/strudla/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
-    }
 
 
     public FilesGetter(String filesPath) {
         this.filesPath = filesPath;
 
+    }
+
+    public String getFilesPath() {
+        return filesPath;
+    }
+
+    public void setFilesPath(String filesPath) {
+        this.filesPath = filesPath;
     }
 
     private Boolean defaultCondition(String name){
