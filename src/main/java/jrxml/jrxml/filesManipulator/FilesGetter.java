@@ -25,7 +25,7 @@ public class FilesGetter {
     }
 
     private Boolean defaultCondition(String name){
-        return (name.toLowerCase().contains("entity"));
+        return (name.toLowerCase().contains("dto"));
     }
 
     public List<File> getFiles(){

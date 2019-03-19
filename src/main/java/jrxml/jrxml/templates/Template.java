@@ -1,5 +1,6 @@
 package jrxml.jrxml.templates;
 
+import jrxml.jrxml.Consts;
 import jrxml.jrxml.filesManipulator.FilesGetter;
 import jrxml.jrxml.reportsDesign.ReportDesign;
 import net.sf.jasperreports.engine.JRException;
@@ -18,7 +19,7 @@ public class Template {
         Map<String, JasperDesign> templateMap = new HashMap<>();
 
         fileList.forEach(file -> {
-            String name = file.getName().split("\\.")[0] + "Template.jrxml";
+           String name = Consts.fileNameCreator(file);
             try {
                 JasperDesign templateDesign = reportDesign.createReport(file);
                 templateMap.put(name, templateDesign);
@@ -32,10 +33,11 @@ public class Template {
     }
 
     public void generateTemplates() {
-        FilesGetter filesGetter = new FilesGetter("/home/strudla/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
+
+        FilesGetter filesGetter = new FilesGetter(Consts.dtoFilesPath);
         List<File> fileList = filesGetter.getFiles();
         Map<String, JasperDesign> templates = mapingFilesForTemplates(fileList);
-        GenerateTemplates.generateTemplates(templates, "/home/strudla/Toma/Java/");
+        GenerateTemplates.generateTemplates(templates, Consts.exportTemplatesPath);
 
     }
 }
