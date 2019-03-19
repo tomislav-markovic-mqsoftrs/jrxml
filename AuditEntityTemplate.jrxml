@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TableReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="4ca9c836-a23b-4ae0-8697-f52956741ad3">
+	<subDataset name="tableDataset" uuid="8dd17254-d1ab-44ee-a5d0-d60d5e409ecb">
+		<field name="aField" class="java.lang.String"/>
+		<field name="id" class="java.lang.String"/>
+		<field name="lastModifiedBy" class="java.lang.String"/>
+		<field name="action" class="java.lang.String"/>
+		<field name="date" class="java.lang.String"/>
+		<field name="itemId" class="java.lang.String"/>
+		<field name="nameOfEntity" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="tableData" class="java.util.List"/>
+	<title>
+		<band height="50">
+			<componentElement>
+				<reportElement x="0" y="0" width="200" height="50" uuid="a6570240-f442-4999-b1b3-637003ea4e41"/>
+				<c:table xmlns:c="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tableDataset" uuid="5c388eb3-2f6d-46cc-9f3a-b00a9ec386b8">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($P{tableData})]]></dataSourceExpression>
+					</datasetRun>
+					<c:column width="100" uuid="2d4de3db-7d5c-4dab-8bbf-09ddccd22937">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="15e88acc-5068-4e07-b636-c65274b9b3b3"/>
+								<text><![CDATA[id]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="54f8e6d8-1d0e-4568-9334-2d8fa15dfc34"/>
+								<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="2d24e296-fe9a-4626-8775-b6c59bb7ffd9">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="54e09fbc-4b8c-475f-b0cc-9243acc52be5"/>
+								<text><![CDATA[lastModifiedBy]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="7f0a102e-4559-4a78-824f-0deb310af149"/>
+								<textFieldExpression><![CDATA[$F{lastModifiedBy}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="bae84ced-b108-4d79-8f48-0f4613eb2bc2">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="4576beb0-93cf-42ab-a017-af117fbf0476"/>
+								<text><![CDATA[action]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="1021fa52-51ac-4fca-a4ec-47c7c41e13ff"/>
+								<textFieldExpression><![CDATA[$F{action}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="c29d3539-64e2-4649-a895-2173c98b9420">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="8db9e267-efaa-4a68-bf9e-b9cb166c6c8d"/>
+								<text><![CDATA[date]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="15aff929-f190-4c20-8f85-281fbdae8de8"/>
+								<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="f6ff8c22-4429-463a-b522-a0db6374a0f3">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="312aeb34-b926-440c-b1c2-be30d46cef8c"/>
+								<text><![CDATA[itemId]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="ceccbfe5-863a-44a8-b229-fbcf4183f75d"/>
+								<textFieldExpression><![CDATA[$F{itemId}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="4792f316-467c-4895-aec2-744ee2669587">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="5752fe6c-7303-415f-87ea-fa576909f00b"/>
+								<text><![CDATA[nameOfEntity]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="045351d8-21fe-4cd8-b9f1-3c8db7bd182b"/>
+								<textFieldExpression><![CDATA[$F{nameOfEntity}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+				</c:table>
+			</componentElement>
+		</band>
+	</title>
+</jasperReport>

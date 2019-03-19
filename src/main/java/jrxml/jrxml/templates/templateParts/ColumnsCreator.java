@@ -1,4 +1,4 @@
-package jrxml.jrxml.templateParts;
+package jrxml.jrxml.templates.templateParts;
 
 import net.sf.jasperreports.components.table.DesignCell;
 import net.sf.jasperreports.components.table.StandardColumn;

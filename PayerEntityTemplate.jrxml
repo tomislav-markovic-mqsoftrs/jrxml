@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TableReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="c95d39b6-c749-4b37-ab7e-ed2d5f3b738c">
+	<subDataset name="tableDataset" uuid="30bca2f0-109a-456e-8f40-29a5b80e5798">
+		<field name="aField" class="java.lang.String"/>
+		<field name="id" class="java.lang.String"/>
+		<field name="ucb" class="java.lang.String"/>
+		<field name="coreId" class="java.lang.String"/>
+		<field name="name" class="java.lang.String"/>
+		<field name="clientId" class="java.lang.String"/>
+		<field name="taxNumber" class="java.lang.String"/>
+		<field name="dataType" class="java.lang.String"/>
+		<field name="phones" class="java.lang.String"/>
+		<field name="contactNames" class="java.lang.String"/>
+		<field name="emails" class="java.lang.String"/>
+		<field name="street" class="java.lang.String"/>
+		<field name="city" class="java.lang.String"/>
+		<field name="param" class="java.lang.String"/>
+		<field name="payrollAccount" class="java.lang.String"/>
+		<field name="accountControl" class="java.lang.String"/>
+		<field name="chargesAccount" class="java.lang.String"/>
+		<field name="chargesModel" class="java.lang.String"/>
+		<field name="chargesAmount" class="java.lang.String"/>
+		<field name="totalEmployees" class="java.lang.String"/>
+		<field name="authorizedEmails" class="java.lang.String"/>
+		<field name="operatingUnit" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="tableData" class="java.util.List"/>
+	<title>
+		<band height="50">
+			<componentElement>
+				<reportElement x="0" y="0" width="200" height="50" uuid="423df844-2596-4219-adee-94245b7086c2"/>
+				<c:table xmlns:c="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tableDataset" uuid="61f66078-11ae-4792-ba77-126ea9df56b8">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($P{tableData})]]></dataSourceExpression>
+					</datasetRun>
+					<c:column width="100" uuid="9d95a83c-9176-4870-98d6-02358615a459">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="8fddc1ae-2797-4852-a781-6c158cdf6453"/>
+								<text><![CDATA[id]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="06eea4af-d062-4b9a-afa9-3b2128902f7d"/>
+								<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="742cf7fc-aacd-49d0-a69f-e907556399b2">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="95267642-6b76-4d50-b036-fa84c9d49a5e"/>
+								<text><![CDATA[ucb]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="b99335ea-f622-4185-a3ae-6e6d44b4f310"/>
+								<textFieldExpression><![CDATA[$F{ucb}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="923b4bb0-a674-400a-896b-83cb60937113">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="11a0c88b-072e-4ed0-9bbb-37839b09fff6"/>
+								<text><![CDATA[coreId]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="022e9782-79e3-4829-827f-62ee2ade6ffe"/>
+								<textFieldExpression><![CDATA[$F{coreId}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="63ada021-74e1-473f-958a-94630086370d">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="8283f3fb-6832-432b-af29-13e86779ba87"/>
+								<text><![CDATA[name]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="fa90d50d-167f-4650-bf86-747da810817b"/>
+								<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="959a59f1-c5bc-4c63-9d5b-15cf1f3b971c">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="0882d0fa-433f-4c6e-9b80-6eafa6f74b8b"/>
+								<text><![CDATA[clientId]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="d07c862f-fdfc-43e9-a42c-186fc5fb21ed"/>
+								<textFieldExpression><![CDATA[$F{clientId}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="344a79d4-4525-4ab6-85a2-4c7c52596abf">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="c7063b47-da46-485b-9f10-2fc23c53875d"/>
+								<text><![CDATA[taxNumber]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="a41cc511-f852-4a3a-8fd2-b97becb2c35f"/>
+								<textFieldExpression><![CDATA[$F{taxNumber}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="c9ba781e-dc8d-48a8-8b44-135a13d98bcb">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="48f5c43f-46f4-4214-8307-791cbc4a4b93"/>
+								<text><![CDATA[dataType]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="13dba9fd-5b08-44cc-8a5e-d9aedc14cbf7"/>
+								<textFieldExpression><![CDATA[$F{dataType}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="20fab284-bd7f-4bcc-9bf4-34d51e50330f">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="7e11bbf3-9d5c-4742-969b-89d3829286c2"/>
+								<text><![CDATA[phones]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="42844201-aac1-46fe-b4e6-95634b9b2a20"/>
+								<textFieldExpression><![CDATA[$F{phones}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="e1d6739f-1cb7-4119-a5b3-fa473b419a56">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="bcd98e04-b78e-4316-b37b-fad29ef83978"/>
+								<text><![CDATA[contactNames]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="72563c02-8f70-43fb-b783-1b49c058b3df"/>
+								<textFieldExpression><![CDATA[$F{contactNames}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="df436399-aa88-4dd4-9ae7-9bbd948feefc">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="3d4bfa2c-7c9e-46d4-a8ae-79a1ffb87b41"/>
+								<text><![CDATA[emails]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="da419531-3abe-4578-82e7-6c355d71dc8d"/>
+								<textFieldExpression><![CDATA[$F{emails}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="2f59aab5-7b6c-4d20-b43a-dedcd7e8ef03">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="d0a86dd4-432f-4ea0-b59f-0928d44f6917"/>
+								<text><![CDATA[street]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="a8727510-6d71-4906-b388-3ab6d0b53276"/>
+								<textFieldExpression><![CDATA[$F{street}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="488c3828-34fa-4f90-a350-b50e211b5d7a">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="4a7ed695-5a62-4b20-bd75-4e8d6e29237d"/>
+								<text><![CDATA[city]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="e7f842c5-7d3a-4f4d-985a-fa11268f44ed"/>
+								<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="7dcddb65-96ee-4b3c-9d0a-c8d9e5ffd93c">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="1ec85607-66cb-402b-8c26-dc279d1226b6"/>
+								<text><![CDATA[param]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="f589ddc2-d206-4a2a-9a86-cf2764a697dd"/>
+								<textFieldExpression><![CDATA[$F{param}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="cc2764cb-14e9-408c-85d6-71adf9d5f5fa">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="e4ba6a9d-7192-45cf-a39e-d88cee221c99"/>
+								<text><![CDATA[payrollAccount]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="b8a87029-2969-46a1-a846-c066eb773de4"/>
+								<textFieldExpression><![CDATA[$F{payrollAccount}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="3a54bae0-9e34-4ea8-8e69-0c3792b89b35">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="e5ebf0fa-50d2-416a-9b04-af0575d9fae6"/>
+								<text><![CDATA[accountControl]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="90be03fb-7028-454a-8475-4b80edb9513e"/>
+								<textFieldExpression><![CDATA[$F{accountControl}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="2cd825d0-6449-49bf-be84-8fca13257f52">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="c724ed5b-b392-4edc-a70a-8cbf94aa6cb4"/>
+								<text><![CDATA[chargesAccount]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="13de3304-46b1-4dff-9fa0-71007190bb3c"/>
+								<textFieldExpression><![CDATA[$F{chargesAccount}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="c6a286a9-510a-4062-9984-a90e3cd3245c">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="8ad5d401-ef3f-4326-8889-1c3959d0c600"/>
+								<text><![CDATA[chargesModel]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="a0b8baee-8f94-42fc-aa68-4bd673bd896c"/>
+								<textFieldExpression><![CDATA[$F{chargesModel}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="0a54b375-e579-4114-b379-f928e3f6dad8">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="b1c950e9-710b-4520-bdee-797b8e437fae"/>
+								<text><![CDATA[chargesAmount]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="1e2578d4-3ffa-4f7a-ad14-08800907439e"/>
+								<textFieldExpression><![CDATA[$F{chargesAmount}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="9af81a3d-447b-4bec-9d1b-a5c24e26c2ac">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="3192fa51-6397-475b-9b34-93d7cd30da3d"/>
+								<text><![CDATA[totalEmployees]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="273bbd4f-dac2-44d1-bf5f-a1766f7b37d4"/>
+								<textFieldExpression><![CDATA[$F{totalEmployees}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="4f32b77c-22b3-4c03-bc03-de8a6ed693b4">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="1f6e688f-f277-4d48-8574-995b6d8b7608"/>
+								<text><![CDATA[authorizedEmails]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="5dc8b93b-231f-4b76-a367-21defa87086f"/>
+								<textFieldExpression><![CDATA[$F{authorizedEmails}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="84875923-2a91-45ac-91b3-f74693013077">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="51958ee6-ee6a-4f1c-8fda-bbd1cd9a074c"/>
+								<text><![CDATA[operatingUnit]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="d9006939-b42c-4fbe-9a31-44b33ca9a514"/>
+								<textFieldExpression><![CDATA[$F{operatingUnit}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+				</c:table>
+			</componentElement>
+		</band>
+	</title>
+</jasperReport>

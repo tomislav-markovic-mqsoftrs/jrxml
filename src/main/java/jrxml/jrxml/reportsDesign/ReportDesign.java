@@ -2,8 +2,8 @@ package jrxml.jrxml.reportsDesign;
 
 import jrxml.jrxml.filesManipulator.FileReader;
 import jrxml.jrxml.filesManipulator.FilesGetter;
-import jrxml.jrxml.templateParts.ColumnsCreator;
-import jrxml.jrxml.templateParts.TableCreator;
+import jrxml.jrxml.templates.templateParts.ColumnsCreator;
+import jrxml.jrxml.templates.templateParts.TableCreator;
 import net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory;
 import net.sf.jasperreports.components.table.Column;
 import net.sf.jasperreports.components.table.StandardColumn;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -32,7 +31,7 @@ public void createReports(List<File> files) throws JRException {
      System.out.println(file.getName());
      JasperDesign template = createReport(file);
      String fileName = file.getName().split("\\.")[0] + "Template.jrxml";
-     JRXmlWriter.writeReport(template, "/home/toma/Toma/"+fileName, "UTF-8");
+     JRXmlWriter.writeReport(template, "/home/strudla/Toma/"+fileName, "UTF-8");
  }
 }
     //the report
@@ -63,7 +62,7 @@ public void createReports(List<File> files) throws JRException {
 
 
         ////VAZNOOOOO!!!
-        FilesGetter filesGetter = new FilesGetter("/home/toma/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
+        FilesGetter filesGetter = new FilesGetter("/home/strudla/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
         List<File> fileList = filesGetter.getFiles();
 
 

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TableReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="f5054fa3-4761-4be5-b472-dfbf4a674c78">
+	<subDataset name="tableDataset" uuid="02f86a79-9ce9-43c0-b854-a119bf184383">
+		<field name="aField" class="java.lang.String"/>
+		<field name="id" class="java.lang.String"/>
+		<field name="value" class="java.lang.String"/>
+		<field name="description" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="tableData" class="java.util.List"/>
+	<title>
+		<band height="50">
+			<componentElement>
+				<reportElement x="0" y="0" width="200" height="50" uuid="f96a816b-2f36-46a9-8d87-acb17e4b6ae4"/>
+				<c:table xmlns:c="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tableDataset" uuid="7ae96e89-54ce-4a1c-a723-e97d6d67c8f0">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($P{tableData})]]></dataSourceExpression>
+					</datasetRun>
+					<c:column width="100" uuid="785b3104-82dc-4472-9cf8-910c7602cf49">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="962e9fc5-7a28-4810-84d8-cdefd1af15e6"/>
+								<text><![CDATA[id]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="cda302f9-0adb-4eb0-9387-702068a15322"/>
+								<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="4bd237e8-6186-42ab-8335-c65f278cd389">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="60fa34eb-675a-4fae-972d-0136b3401f3a"/>
+								<text><![CDATA[value]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="d115ab23-3fe0-4803-9b36-d793a78c55ca"/>
+								<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+					<c:column width="100" uuid="a410f1fb-f42a-4ff2-8a71-2e683a6c4ce4">
+						<c:columnHeader height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="44446b65-8f00-420d-ad53-0b29385e55e0"/>
+								<text><![CDATA[description]]></text>
+							</staticText>
+						</c:columnHeader>
+						<c:detailCell height="20">
+							<box>
+								<pen lineWidth="1.0"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="f28c6741-8b8a-4c27-a0a7-79363017bae5"/>
+								<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+							</textField>
+						</c:detailCell>
+					</c:column>
+				</c:table>
+			</componentElement>
+		</band>
+	</title>
+</jasperReport>
