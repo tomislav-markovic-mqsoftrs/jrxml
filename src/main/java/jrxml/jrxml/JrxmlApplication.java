@@ -25,11 +25,6 @@ public class JrxmlApplication {
 
         FilesGetter filesGetter = new FilesGetter("/home/toma/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
 
-
-        //Trenutno ne radi
-//        FilesControler filesControler = new FilesControler(filesGetter.getFiles());
-
-
         List<File> fileList = filesGetter.getFiles();
 
 
@@ -43,6 +38,10 @@ public class JrxmlApplication {
         ReportDesign tableReport = new ReportDesign();
         List<File> files = new ArrayList(Arrays.asList(fileList.get(0), fileList.get(1)));
         tableReport.createReports(files);
+
+
+
+
 
 
         JasperDesign design = tableReport.createReport(fileList.get(2));
