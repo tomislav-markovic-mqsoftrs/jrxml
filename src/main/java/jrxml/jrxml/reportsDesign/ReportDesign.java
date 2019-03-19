@@ -39,95 +39,115 @@ public void createReports(List<File> files) throws JRException {
     public JasperDesign createReport(File file) throws JRException {
         //the report
         jasperDesign = new JasperDesign();
-        jasperDesign.setName("TableReport");
+        jasperDesign.setName("report");
         jasperDesign.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
-
-        JRDesignParameter parameter = new JRDesignParameter();
-        parameter.setValueClass(List.class);
-        parameter.setName(PARAMETER_DATA);
-        jasperDesign.addParameter(parameter);
-
-
-        //the subdataset
-        String datasetName = "tableDataset";
-        JRDesignDataset subdataset = new JRDesignDataset(false);
-        subdataset.setName(datasetName);
-        //subdataset field
-
-
-        JRDesignField field = new JRDesignField();
-        field.setValueClass(String.class);
-        field.setName(FIELD_NAME);
-        subdataset.addField(field);
-
-
-        ////VAZNOOOOO!!!
-        FilesGetter filesGetter = new FilesGetter("/home/strudla/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
-        List<File> fileList = filesGetter.getFiles();
-
+JRDesignBand body = new JRDesignBand();
 
         List<List<String>> elements = FileReader.readLineByLine(file.getPath());
-
-
         for(List<String> e : elements){
-            JRDesignField f = new JRDesignField();
-            f.setValueClassName(e.get(1));
-            f.setName(e.get(0));
-            subdataset.addField(f);
+            JRDesignParameter parameter = new JRDesignParameter();
+            parameter.setValueClassName(e.get(1));
+            parameter.setName(e.get(0));
+            jasperDesign.addParameter(parameter);
 
+            JRDesignTextField textField = new JRDesignTextField(jasperDesign);
+
+            textField.setWidth(20);
+            textField.setHeight(10);
+            JRDesignExpression expression = new JRDesignExpression();
+            expression.addParameterChunk("$P{"+e.get(0) + "}");
+            textField.setExpression(expression);
+            body.addElement(textField);
         }
+        jasperDesign.setTitle(body);
 
-        jasperDesign.addDataset(subdataset);
-
-        //the table element
-        JRDesignComponentElement tableElement = new JRDesignComponentElement(jasperDesign);
-        tableElement.setX(0);
-        tableElement.setY(0);
-        tableElement.setWidth(200);
-        tableElement.setHeight(50);
-
-        ComponentKey componentKey = new ComponentKey(ComponentsExtensionsRegistryFactory.NAMESPACE, "c",
-                ComponentsExtensionsRegistryFactory.TABLE_COMPONENT_NAME);
-        tableElement.setComponentKey(componentKey);
-
-
-
-
-        ColumnsCreator column = new ColumnsCreator();
-
-
-
-
-        //first column
-        StandardColumn recNoColumn = column.createStandardColumn(100, 20, "Record", "$V{REPORT_COUNT}");
-        //second column
-        StandardColumn fieldColumn = column.createStandardColumn(100, 20, "Field", "$F{" + FIELD_NAME + "}");
-        //third column
-
-
-        List<Column> columns = new ArrayList<Column>();
-        for(List<String> e : elements){
-            StandardColumn col = column.createStandardColumn(100, 20,e.get(0) , "$F{" + e.get(0) + "}");
-            columns.add(col);
-        }
-
-
-
-
-
-
-
-        TableCreator tableCreator = new TableCreator();
-        StandardTable standardTable = tableCreator.createStandardTable(columns);
-
-        tableElement.setComponent(standardTable);
-
-        JRDesignBand title = new JRDesignBand();
-        title.setHeight(50);
-        title.addElement(tableElement);
-
-
-        jasperDesign.setTitle(title);
+//
+//        JRDesignParameter parameter = new JRDesignParameter();
+//        parameter.setValueClass(List.class);
+//        parameter.setName(PARAMETER_DATA);
+//        jasperDesign.addParameter(parameter);
+//
+//
+//        //the subdataset
+//        String datasetName = "tableDataset";
+//        JRDesignDataset subdataset = new JRDesignDataset(false);
+//        subdataset.setName(datasetName);
+//        //subdataset field
+//
+//
+//        JRDesignField field = new JRDesignField();
+//        field.setValueClass(String.class);
+//        field.setName(FIELD_NAME);
+//        subdataset.addField(field);
+//
+//
+////        ////VAZNOOOOO!!!
+////        FilesGetter filesGetter = new FilesGetter("/home/strudla/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
+////        List<File> fileList = filesGetter.getFiles();
+//
+//
+//        List<List<String>> elements = FileReader.readLineByLine(file.getPath());
+//
+//
+//        for(List<String> e : elements){
+//            JRDesignField f = new JRDesignField();
+//            f.setValueClassName(e.get(1));
+//            f.setName(e.get(0));
+//            subdataset.addField(f);
+//
+//        }
+//
+//        jasperDesign.addDataset(subdataset);
+//
+//        //the table element
+//        JRDesignComponentElement tableElement = new JRDesignComponentElement(jasperDesign);
+//        tableElement.setX(0);
+//        tableElement.setY(0);
+//        tableElement.setWidth(1000);
+//        tableElement.setHeight(500);
+//
+//        ComponentKey componentKey = new ComponentKey(ComponentsExtensionsRegistryFactory.NAMESPACE, "c",
+//                ComponentsExtensionsRegistryFactory.TABLE_COMPONENT_NAME);
+//        tableElement.setComponentKey(componentKey);
+//
+//
+//
+//
+//        ColumnsCreator column = new ColumnsCreator();
+//
+//
+//
+//
+//        //first column
+//        StandardColumn recNoColumn = column.createStandardColumn(100, 20, "Record", "$V{REPORT_COUNT}");
+//        //second column
+//        StandardColumn fieldColumn = column.createStandardColumn(100, 20, "Field", "$F{" + FIELD_NAME + "}");
+//        //third column
+//
+//
+//        List<Column> columns = new ArrayList<Column>();
+//        for(List<String> e : elements){
+//            StandardColumn col = column.createStandardColumn(100, 20,e.get(0) , "$F{" + e.get(0) + "}");
+//            columns.add(col);
+//        }
+//
+//
+//
+//
+//
+//
+//
+//        TableCreator tableCreator = new TableCreator();
+//        StandardTable standardTable = tableCreator.createStandardTable(columns);
+//
+//        tableElement.setComponent(standardTable);
+//
+//        JRDesignBand title = new JRDesignBand();
+//        title.setHeight(50);
+//        title.addElement(tableElement);
+//
+//
+//        jasperDesign.setTitle(title);
         return jasperDesign;
     }
 }
