@@ -23,7 +23,8 @@ public class JrxmlApplication {
 
     public static void main(String[] args) throws JRException {
         Template template = new Template();
-        template.generateTemplates();
+//        template.generateTemplates();
+        template.generateSingleTemplate();
 
 //        FilesGetter filesGetter = new FilesGetter("/home/strudla/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
 //

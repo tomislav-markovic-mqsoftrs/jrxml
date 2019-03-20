@@ -7,9 +7,8 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.design.JasperDesign;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Template {
 
@@ -30,6 +29,13 @@ public class Template {
         });
 
         return templateMap;
+    }
+
+    public void generateSingleTemplate(){
+        File file = new File(Consts.dtoFilesPath+"/" + Consts.singleDtoFile);
+        List<File> files = new ArrayList<>(Arrays.asList(file));
+        Map<String, JasperDesign> templates = mapingFilesForTemplates(files);
+        GenerateTemplates.generateTemplates(templates, Consts.exportTemplatesPath);
     }
 
     public void generateTemplates() {

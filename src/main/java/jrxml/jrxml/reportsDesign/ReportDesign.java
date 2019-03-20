@@ -1,22 +1,13 @@
 package jrxml.jrxml.reportsDesign;
 
 import jrxml.jrxml.filesManipulator.FileReader;
-import jrxml.jrxml.filesManipulator.FilesGetter;
-import jrxml.jrxml.templates.templateParts.ColumnsCreator;
-import jrxml.jrxml.templates.templateParts.TableCreator;
-import net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory;
-import net.sf.jasperreports.components.table.Column;
-import net.sf.jasperreports.components.table.StandardColumn;
-import net.sf.jasperreports.components.table.StandardTable;
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.component.ComponentKey;
 import net.sf.jasperreports.engine.design.*;
 import net.sf.jasperreports.engine.type.WhenNoDataTypeEnum;
-import net.sf.jasperreports.engine.xml.JRXmlWriter;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -26,14 +17,6 @@ public class ReportDesign {
     public JasperDesign jasperDesign;
 
 
-public void createReports(List<File> files) throws JRException {
- for(File file: files){
-     System.out.println(file.getName());
-     JasperDesign template = createReport(file);
-     String fileName = file.getName().split("\\.")[0] + "Template.jrxml";
-     JRXmlWriter.writeReport(template, "/home/strudla/Toma/"+fileName, "UTF-8");
- }
-}
     //the report
 
     public JasperDesign createReport(File file) throws JRException {
@@ -41,10 +24,13 @@ public void createReports(List<File> files) throws JRException {
         jasperDesign = new JasperDesign();
         jasperDesign.setName("report");
         jasperDesign.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
-JRDesignBand body = new JRDesignBand();
-
+        jasperDesign.setPageHeight(1000);
+        JRDesignBand body = new JRDesignBand();
+        body.setHeight(500);
         List<List<String>> elements = FileReader.readLineByLine(file.getPath());
-        for(List<String> e : elements){
+        int x = 0;
+        int y = 0;
+        for (List<String> e : elements) {
             JRDesignParameter parameter = new JRDesignParameter();
             parameter.setValueClassName(e.get(1));
             parameter.setName(e.get(0));
@@ -52,14 +38,42 @@ JRDesignBand body = new JRDesignBand();
 
             JRDesignTextField textField = new JRDesignTextField(jasperDesign);
 
-            textField.setWidth(20);
-            textField.setHeight(10);
+            textField.setWidth(100);
+            textField.setHeight(30);
+            textField.setX(x);
+            textField.setY(y);
+            y = y + 40;
+            if (y > 400) {
+                y = 0;
+                x = x + 110;
+            }
             JRDesignExpression expression = new JRDesignExpression();
-            expression.addParameterChunk("$P{"+e.get(0) + "}");
+            expression.addParameterChunk(e.get(0));
             textField.setExpression(expression);
             body.addElement(textField);
+
         }
-        jasperDesign.setTitle(body);
+
+
+
+
+        //CREATE HEADER
+        Header header = new Header();
+        jasperDesign.setPageHeader(header.createHeader());
+
+        //CREATE BODY
+        jasperDesign.setColumnHeader(body);
+
+
+
+
+        //CREATE FOOTER
+        Footer footer = new Footer();
+        jasperDesign.setPageFooter(footer.createHeader());
+
+//        jasperDesign.setPageHeader();
+//        jasperDesign.setTitle(body);
+
 
 //
 //        JRDesignParameter parameter = new JRDesignParameter();

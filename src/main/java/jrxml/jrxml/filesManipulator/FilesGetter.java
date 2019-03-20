@@ -1,5 +1,6 @@
 package jrxml.jrxml.filesManipulator;
 
+import jrxml.jrxml.Consts;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -24,16 +25,14 @@ public class FilesGetter {
         this.filesPath = filesPath;
     }
 
-    private Boolean defaultCondition(String name){
-        return (name.toLowerCase().contains("dto"));
-    }
+
 
     public List<File> getFiles(){
         List<File> files = new ArrayList<>();
         File folder = new File(filesPath);
         File[] listOfFiles = folder.listFiles();
         for(File file : listOfFiles){
-            if(defaultCondition(file.getName())){
+            if(Consts.fileGetterCondition(file.getName())){
                 files.add(file);
             }
         }

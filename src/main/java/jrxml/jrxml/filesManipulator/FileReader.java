@@ -1,5 +1,7 @@
 package jrxml.jrxml.filesManipulator;
 
+import jrxml.jrxml.Consts;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,7 +19,7 @@ public class FileReader {
         try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
             stream.forEach(s -> {
 
-                if (s.contains("private")) {
+                if (Consts.fileReaderCondition(s)) {
                     String[] line = s.trim().split(";")[0].split(" ");
                     int last = line.length - 1;
                     List<String> field = new ArrayList(Arrays.asList(line[last], "java.lang.String"));
