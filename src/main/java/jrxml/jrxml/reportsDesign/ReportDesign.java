@@ -63,7 +63,7 @@ public void createReports(List<File> files) throws JRException {
 
 
         ////VAZNOOOOO!!!
-        FilesGetter filesGetter = new FilesGetter("/home/toma/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
+        FilesGetter filesGetter = new FilesGetter("/home/toma/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/dto/response");
         List<File> fileList = filesGetter.getFiles();
 
 

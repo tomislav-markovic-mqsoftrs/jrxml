@@ -23,12 +23,12 @@ public class JrxmlApplication {
     public static void main(String[] args) throws JRException {
 
 
-        FilesGetter filesGetter = new FilesGetter("/home/toma/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/entity");
+        FilesGetter filesGetter = new FilesGetter("/home/toma/Toma/workspace/papa/src/main/java/rs/unicreditbank/papa/dto/response");
 
         List<File> fileList = filesGetter.getFiles();
 
 
-        List elements = FileReader.readLineByLine(fileList.get(2).getPath());
+//        List elements = FileReader.readLineByLine(fileList.get(2).getPath());
 
         for (Object field : elements) {
             System.out.println(field.toString());
